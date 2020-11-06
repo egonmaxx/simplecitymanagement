@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+# Dependency directories
+vendor
+# dotenv environment variables file
+.env
+# volumes
+docker-volumes-data/
+#testing
+.phpunit.result.cache
+#migrations
+migrations/.migrations.log
