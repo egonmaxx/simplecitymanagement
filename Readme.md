@@ -8,7 +8,7 @@
 
 #Install composer packages
 
-* docker exec -ti <name of container> bash
+* docker exec -ti simplecitymanagement_app_1 bash
 * composer install
 * exit
 
@@ -18,7 +18,7 @@
 
 #Migrations
 
-* docker exec -ti <name of container> bash
+* docker exec -ti simplecitymanagement_app_1 bash
 * ./vendor/bin/phpmig status (check status of migration files)
 * ./vendor/bin/phpmig migrate (run migration)
 * exit
