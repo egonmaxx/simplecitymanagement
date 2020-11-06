@@ -1,0 +1,12 @@
+{
+    "title": "Simple city management",
+    "paragraph1": "Please enter a city name into the input field and store it.",
+    "paragraph2": "You can see the prevouly stored cities below in a list.",
+    "countySeletLabel": "Select from counties:",
+    "countySelectFirstOption": "Choose County",
+    "citySelectLabel": "City Name:",
+    "citySubmitButton": "Store it!",
+    "noCity": "No cities yet",
+    "pleaseSelect": "Please select a county",
+    "pleaseEnter": "Please enter a city name"
+}

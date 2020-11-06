@@ -1,0 +1,12 @@
+{
+    "title" : "Egyszerű város menedzsment",
+    "paragraph1" : "Kérlek írd be a város nevét a mezőbe és tárold el.",
+    "paragraph2" : "Az alábbi listában láthatod az eltárolt városokat.",
+    "countySeletLabel" : "Válassz a megyéből",
+    "countySelectFirstOption" : "Válassz megyét",
+    "citySelectLabel":"Város neve:",
+    "citySubmitButton": "Tárolás!",
+    "noCity": "Nincs listázható város",
+    "pleaseSelect": "Kérlek válassz megyét",
+    "pleaseEnter": "Kérlet írj be egy város nevet"
+}
