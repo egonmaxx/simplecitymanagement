@@ -40,10 +40,16 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found
+        $class = '\Application\RouteEndpoints\HttpNotFound';
+        $method = 'response';
+        echo Application\Services\CommanderService::commander($class,$method,$request);
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
+        $class = '\Application\RouteEndpoints\HttpNotAllowed';
+        $method = 'response';
         // ... 405 Method Not Allowed
+        echo Application\Services\CommanderService::commander($class,$method,$request);
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
@@ -51,11 +57,7 @@ switch ($routeInfo[0]) {
         // ... call $handler with $vars
         list($class, $method) = explode("/", $handler, 2);
 
-        $reflectionClass = new ReflectionClass($class);
-        $reflectionMethod = $reflectionClass->getMethod($method);
+        echo Application\Services\CommanderService::commander($class,$method,$request);
 
-        $instanceFromReflection = $reflectionClass->newInstanceArgs(array($request));
-
-        echo $reflectionMethod->invoke($instanceFromReflection);
         break;
 }

@@ -55,6 +55,24 @@ class DataBaseManagerService
     }
     
     /**
+     * dbFetchQuerySafe - getting data from db
+     * 
+     * - preparing statement
+     * - binding parameters and executing statement
+     * - retuning with fetched data 
+     *
+     * @param  mixed $query
+     * @param  mixed $params
+     * @return void
+     */
+    public function dbFetchQuerySafe($query,$params)
+    {
+        $statement = $this->dataBase->prepare($query);
+        $statement->execute($params);
+        return $statement->fetchAll();
+    }
+    
+    /**
      * dbQuery - fetching data from db
      *
      * @param  mixed $query
@@ -63,5 +81,18 @@ class DataBaseManagerService
     public function dbQuery($query)
     {
         return $this->dataBase->prepare($query)->execute();
+    }
+    
+    /**
+     * dbQuerySafe
+     *
+     * @param  mixed $query
+     * @param  mixed $params
+     * @return void
+     */
+    public function dbQuerySafe($query,$params)
+    {
+        $statement = $this->dataBase->prepare($query);
+        return $statement->execute($params);
     }
 }

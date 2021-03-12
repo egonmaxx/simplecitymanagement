@@ -3,6 +3,7 @@
 namespace Application\Services;
 
 use Application\Services\DataBaseManagerService;
+use Application\Services\InputDataValidation;
 
 /**
  * ComposeQuery - represent the db queries for the application
@@ -25,9 +26,18 @@ class ComposeQuery {
 	public function __construct($request)
 	{
 		$this->requestBody = json_decode($request->getBody()->getContents());
+		$this->validation($this->requestBody);
 		$this->databaseManager = new DataBaseManagerService();
 	}
 	
+	private function validation($inputData)
+	{
+		if (isset($inputData)) {
+			foreach ($inputData as $id => $data) {
+				$this->requestBody->id = InputDataValidation::dataValidation($data);
+			}
+		}
+	}
 	/**
 	 * getAllCounties - selecting county query
 	 *
@@ -56,7 +66,9 @@ class ComposeQuery {
 	 */
 	public function getAllCitiesByCountyId()
 	{
-		return json_encode($this->databaseManager->dbFetchQuery('SELECT id, name FROM cities WHERE countyId='.$this->requestBody->countyId.' AND status = 1'));
+		$params = [':countyId' => $this->requestBody->countyId];
+		return json_encode($this->databaseManager->dbFetchQuerySafe('SELECT id, name FROM cities WHERE status = 1 AND countyId= :countyId',$params));
+		// return json_encode($this->databaseManager->dbFetchQuery('SELECT id, name FROM cities WHERE status = 1 AND countyId='.$this->requestBody->countyId));
 	}
 	
 	/**
